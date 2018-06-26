@@ -1,0 +1,138 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    {% load bootstrap3 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    
+<style>
+* {
+    box-sizing: border-box;
+}
+
+/* Create three unequal columns that floats next to each other */
+.column {
+    float: left;
+    padding: 20px;
+	height:1000px;
+    
+}
+.panel {
+float: left;
+width: 100%;
+}
+
+.left, .right {
+
+  width: 20%;
+}
+
+.middle {
+  width: 60%;
+}
+
+/* Clear floats after the columns */
+.row:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+@media screen and (max-width: 600px) {
+    .column {
+        width: 100%;
+    }
+</style>
+
+    
+
+  </head>
+
+  <body>
+<div class="row">
+	<div class="column left" style="background-color:#aaa;">
+    <h2>Column 1</h2>
+    <p>Some text..</p>
+	</div>
+	
+	<div class="column middle" style="background-color:#bbb;">
+	
+	######## add here
+	
+	<form action='../upload.html/' method='post'>{% csrf_token %}
+    <input type='submit' value='Submit' />
+    </form>
+	
+	### form up
+	###
+<form action='../upload.html/' method='post'>{% csrf_token %}
+{{ form.non_field_errors }}
+<div class="fieldWrapper">
+    {{ form.title.errors }}
+    <label for="{{ form.title.id_for_label }}">Enter Title:</label>
+    {{ form.title }}
+</div>
+<div class="fieldWrapper">
+    {{ form.slug.errors }}
+    <label for="{{ form.slug.id_for_label }}">Slug Here:</label>
+    {{ form.slug }}
+</div>
+<div class="fieldWrapper">
+    {{ form.summary.errors }}
+    <label for="{{ form.summary.id_for_label }}">Sum up:</label>
+    {{ form.summary }}
+</div>
+<div class="fieldWrapper">
+    {{ form.content.errors }}
+    <label for="{{ form.content.id_for_label }}">Content</label>
+    {{ form.content }}
+</div>
+<div class="fieldWrapper">
+    {{ form.published.errors }}
+    <label for="{{ form.published.id_for_label }}">Published?</label>
+    {{ form.published }}
+</div>
+<input type='submit' value='Submit' />
+
+
+#####
+    <h1>news feed page</h1>
+
+	<div class="panel panel-success" >
+	{%for post in posts %}
+
+
+  <!-- Default panel contents -->
+  
+	<div class="panel-heading"><h5><a href="../post/{{post.slug}}">{{post.title}}</a></h5></div>
+	<div class="panel-body">
+    <p>{{post.summary}}</p>
+	</div>
+  
+	<div><br><br></div>
+	{% endfor %}
+	
+	
+	</div>
+
+</div>
+  <div class="column right" style="background-color:#ccc;">
+    <h2>Column 3</h2>
+    <p>Some text..</p>
+  </div>
+
+
+
+
+
+  </body>
+
+</html>
+{% endblock %}

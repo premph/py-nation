@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+<form action='../upload.html/' method='post'>{% csrf_token %}
+{{ form.non_field_errors }}
+<div class="fieldWrapper">
+    {{ form.title.errors }}
+    <label for="{{ form.title.id_for_label }}">Enter Title:</label>
+    {{ form.title }}
+</div>
+<div class="fieldWrapper">
+    {{ form.slug.errors }}
+    <label for="{{ form.slug.id_for_label }}">Slug Here:</label>
+    {{ form.slug }}
+</div>
+<div class="fieldWrapper">
+    {{ form.summary.errors }}
+    <label for="{{ form.summary.id_for_label }}">Sum up:</label>
+    {{ form.summary }}
+</div>
+<div class="fieldWrapper">
+    {{ form.content.errors }}
+    <label for="{{ form.content.id_for_label }}">Content</label>
+    {{ form.content }}
+</div>
+<div class="fieldWrapper">
+    {{ form.published.errors }}
+    <label for="{{ form.published.id_for_label }}">Published?</label>
+    {{ form.published }}
+</div>
+<input type='submit' value='Submit' />
+
+
+{% endblock %}
